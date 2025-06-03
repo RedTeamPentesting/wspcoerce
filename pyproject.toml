@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools >= 77.0.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wspcoerce"
+version = "1.0.0"
+dependencies = [
+	"impacket"
+]
+requires-python = ">=3.8"
+authors = [
+	{name = "RedTeam Pentesting GmbH", email = "kontakt@redteam-pentesting.de"},
+]
+description = "Coerces a Windows computer account via SMB to an arbitrary target"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENCSE"]
+keywords = ["egg", "bacon", "sausage", "tomatoes", "Lobster Thermidor"]
+classifiers = [
+	"Programming Language :: Python :: 3",
+]
+
+[project.urls]
+Homepage = "https://github.com/RedTeamPentesting/WSPCoerce.py"
+Repository = "https://github.com/RedTeamPentesting/WSPCoerce.py"
+"Bug Tracker" = "https://github.com/RedTeamPentesting/WSPCoerce.py/issues"
+
+[project.scripts]
+wspcoerce = "wspcoerce.cli:main"
