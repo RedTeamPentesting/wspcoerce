@@ -13,6 +13,7 @@ import argparse
 from impacket.examples import logger
 from impacket import version
 from impacket.smbconnection import SMBConnection
+from impacket.smbconnection import SessionError as SMBConnectionSessionError
 from impacket.examples.utils import parse_target
 from impacket.smb3 import *
 
@@ -151,7 +152,15 @@ def main():
     treeId = smbClient.connectTree("IPC$")
     logging.info("Connected to IPC$")
 
-    fileId = smbClient.createFile(treeId, "MsFteWds", FILE_READ_DATA, FILE_SHARE_READ)
+
+    try:
+        fileId = smbClient.createFile(treeId, "MsFteWds", FILE_READ_DATA, FILE_SHARE_READ)
+    except SMBConnectionSessionError as e:
+        if e.getErrorString()[0] == "STATUS_OBJECT_NAME_NOT_FOUND":
+            logging.error("MsFteWds pipe is not available. Maybe the Windows Search service is not running (Default on Windows Server >=2016)?")
+        else:
+            logging.error(f"Unknwon SessionError: {e.getErrorString()}")
+        exit(1)
     logging.info("Connected to MsFteWds pipe")
 
     wsp_connect = smbClient._SMBConnection.ioctl(
