@@ -14,8 +14,6 @@ authors = [
 ]
 description = "Coerces a Windows computer account via SMB to an arbitrary target"
 readme = "README.md"
-license = "MIT"
-license-files = ["LICENCSE"]
 keywords = ["egg", "bacon", "sausage", "tomatoes", "Lobster Thermidor"]
 classifiers = [
 	"Programming Language :: Python :: 3",
